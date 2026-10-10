@@ -1,0 +1,4 @@
+# 6c. Loss ablation: Charbonnier + SSIM + perceptual (no color loss).
+_base_: _short.yaml
+experiment: l3_perceptual
+loss: {charbonnier: 1.0, ssim: 0.3, perceptual: 0.05, color: 0.0}

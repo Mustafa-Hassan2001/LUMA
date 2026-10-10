@@ -1,0 +1,9 @@
+# Same model, trained and validated on LOL-v2-Synthetic (384x384 images).
+_base_: base.yaml
+experiment: ours_lolv2syn
+data:
+  train_set: lol_v2_synthetic
+  val_set: lol_v2_synthetic
+  repeat: 4
+train:
+  epochs: 250

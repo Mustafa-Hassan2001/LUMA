@@ -1,0 +1,24 @@
+# Which runs make up each ablation table. a04_full is the shared reference row
+# (full attention, full loss, width 16), so it is trained once and reused.
+attention:
+  title: Attention components
+  rows:
+    - {run: a01_no_attention, label: "No attention"}
+    - {run: a02_channel_only, label: "Channel attention only (CBAM-C)"}
+    - {run: a03_spatial_only, label: "Spatial attention only"}
+    - {run: a02b_eca,         label: "ECA + spatial"}
+    - {run: a05_no_gates,     label: "CBAM, no attention gates"}
+    - {run: a04_full,         label: "CBAM + attention gates (ours)"}
+loss:
+  title: Loss terms
+  rows:
+    - {run: l1_charbonnier, label: "Charbonnier (L1)"}
+    - {run: l2_ssim,        label: "+ SSIM"}
+    - {run: l3_perceptual,  label: "+ SSIM + perceptual"}
+    - {run: a04_full,       label: "+ SSIM + perceptual + color (full)"}
+width:
+  title: Network width
+  rows:
+    - {run: w08,      label: "base channels 8"}
+    - {run: a04_full, label: "base channels 16 (ours)"}
+    - {run: w32,      label: "base channels 32"}

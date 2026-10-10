@@ -1,0 +1,5 @@
+# 5. Full attention but plain skip connections (no attention gates).
+_base_: _short.yaml
+experiment: a05_no_gates
+model:
+  attention_gates: false

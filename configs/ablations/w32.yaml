@@ -1,0 +1,4 @@
+# 7b. Width ablation: base channels 32 -> [32, 64, 128, 256].
+_base_: _short.yaml
+experiment: w32
+model: {base_channels: 32}

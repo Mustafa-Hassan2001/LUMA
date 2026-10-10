@@ -1,0 +1,17 @@
+# Published numbers, used ONLY when a baseline cannot be run in our pipeline.
+# Rows taken from here are marked "reported†" in every table. They come from the
+# cited paper, NOT from our metric code, so they are not strictly comparable.
+# Add an entry only with a verifiable source (paper + table). Keys per dataset:
+# psnr, ssim, lpips (optional). `params` is the model size.
+#
+# Note: Retinexformer reports FLOPs at 256x256, so its FLOPs are not copied here
+# (our tables use MACs at 600x400, which we measure ourselves).
+
+retinexformer:
+  source: "Cai et al., Retinexformer, ICCV 2023, arXiv:2303.06705, Table 1"
+  params: 1610000
+  lol_v1: {psnr: 25.16, ssim: 0.845}
+
+# zero_dce / zero_dce_pp / retinexnet / enlightengan: these are expected to run in
+# our pipeline (official or ported weights are downloaded automatically). If one
+# fails, add its numbers here with an exact source before using the table.

@@ -1,0 +1,4 @@
+# 6a. Loss ablation: Charbonnier (smooth L1) only.
+_base_: _short.yaml
+experiment: l1_charbonnier
+loss: {charbonnier: 1.0, ssim: 0.0, perceptual: 0.0, color: 0.0}

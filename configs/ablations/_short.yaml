@@ -1,0 +1,7 @@
+# Shared ablation schedule: shorter than the main run so each ablation fits into
+# one free Colab session (~1 h on a T4). All ablations use this SAME schedule,
+# so they are comparable with each other (but not directly with the main run).
+_base_: ../base.yaml
+train:
+  epochs: 100
+  val_every: 5

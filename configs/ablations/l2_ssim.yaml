@@ -1,0 +1,4 @@
+# 6b. Loss ablation: Charbonnier + SSIM.
+_base_: _short.yaml
+experiment: l2_ssim
+loss: {charbonnier: 1.0, ssim: 0.3, perceptual: 0.0, color: 0.0}

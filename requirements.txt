@@ -1,0 +1,23 @@
+# torch/torchvision are pre-installed on Colab; they are listed without pins so
+# pip does not replace Colab's CUDA build. Locally, install them first from
+# https://pytorch.org/get-started/locally/.
+torch>=2.1
+torchvision>=0.16
+numpy>=1.24
+opencv-python>=4.8
+scikit-image>=0.21
+pillow>=10.0
+lpips>=0.1.4
+thop>=0.1.1.post2209072238
+pyyaml>=6.0
+tqdm>=4.65
+tensorboard>=2.14
+matplotlib>=3.7
+huggingface_hub>=0.23
+gdown>=5.2
+pytest>=7.4
+# Phases 5-8
+onnx>=1.15
+onnxruntime>=1.17        # on Colab GPU, notebook 02 installs onnxruntime-gpu instead
+gradio>=4.40
+einops>=0.7              # Retinexformer baseline

@@ -1,0 +1,6 @@
+# 1. No attention anywhere: no channel/spatial attention and no attention gates.
+_base_: _short.yaml
+experiment: a01_no_attention
+model:
+  attention: {channel: none, spatial: false}
+  attention_gates: false

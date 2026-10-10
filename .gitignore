@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+# raw data is never committed (see data/DATASETS.md)
+data/*/
+!data/download.py
+/data/*.zip
+runs/
+checkpoints/
+*.pth
+*.pt
+*.onnx

@@ -1,0 +1,61 @@
+# Main configuration ("ours"): trained on LOL-v1, validated on the LOL-v1 test split.
+# Ablation configs in configs/ablations/ inherit from this file via `_base_` and
+# override only what they change. Any key can also be overridden on the command
+# line: python src/train.py --config configs/base.yaml --opts train.epochs=10
+
+experiment: ours_lolv1
+seed: 42
+
+paths:
+  # Everything that must survive a Colab disconnect lives on Google Drive.
+  drive_root: /content/drive/MyDrive/lowlight-attn-unet
+  dataset_cache: /content/drive/MyDrive/lowlight-attn-unet/datasets   # <name>.zip caches
+  runs: /content/drive/MyDrive/lowlight-attn-unet/runs                 # checkpoints, logs, configs
+  results: /content/drive/MyDrive/lowlight-attn-unet/results           # metrics, figures, tables
+
+data:
+  root: /content/data            # fast local disk (unzipped from the Drive cache)
+  train_set: lol_v1              # folder name under data.root
+  val_set: lol_v1                # validated on its `test` split (LOL-v1: 15 images)
+  patch_size: 256                # random crops for training; testing is full resolution
+  batch_size: 8                  # fits easily on a T4 (15 GB) with AMP
+  repeat: 8                      # one epoch = every training image seen 8 times (485 iters)
+  num_workers: 2                 # Colab free tier has 2 CPU cores
+  cache_in_memory: true          # LOL-v1 train set is ~350 MB decoded
+
+model:
+  name: attn_unet
+  base_channels: 16              # channels [16, 32, 64, 128]
+  levels: 4
+  conv: ds                       # depthwise-separable
+  norm: none
+  act: lrelu
+  residual_blocks: true
+  attention:
+    channel: cbam                # none | eca | se | cbam
+    spatial: true
+    bottleneck: true
+    decoder: true
+  attention_gates: true
+  upsample: bilinear             # bilinear | pixelshuffle
+  global_residual: true
+
+loss:                            # weight 0 disables a term
+  charbonnier: 1.0
+  ssim: 0.3                      # applied to (1 - SSIM)
+  perceptual: 0.05               # VGG19 relu1_2/2_2/3_4/4_4 L1
+  color: 0.1                     # RGB angle loss
+
+train:
+  epochs: 300                    # ~145k iterations; split over sessions with --max_hours
+  lr: 2.0e-4
+  min_lr: 1.0e-6
+  weight_decay: 1.0e-4
+  warmup_epochs: 3
+  grad_clip: 1.0
+  amp: true
+  val_every: 5
+  deterministic: false           # true = bit-reproducible but slower cuDNN kernels
+
+eval:
+  gt_mean: false                 # main results are reported WITHOUT GT-mean correction

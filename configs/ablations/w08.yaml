@@ -1,0 +1,4 @@
+# 7a. Width ablation: base channels 8 -> [8, 16, 32, 64].
+_base_: _short.yaml
+experiment: w08
+model: {base_channels: 8}

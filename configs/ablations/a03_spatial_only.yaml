@@ -1,0 +1,5 @@
+# 3. Spatial attention only, gates kept.
+_base_: _short.yaml
+experiment: a03_spatial_only
+model:
+  attention: {channel: none, spatial: true}

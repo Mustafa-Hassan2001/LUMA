@@ -1,0 +1,4 @@
+# 4. Full model (ours) on the short ablation schedule: CBAM + gates, full loss, width 16.
+#    Reference row for the attention, loss and width ablations.
+_base_: _short.yaml
+experiment: a04_full

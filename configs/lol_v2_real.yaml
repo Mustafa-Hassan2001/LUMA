@@ -1,0 +1,9 @@
+# Same model, trained and validated on LOL-v2-Real (for in-domain LOL-v2 numbers).
+_base_: base.yaml
+experiment: ours_lolv2real
+data:
+  train_set: lol_v2_real
+  val_set: lol_v2_real
+  repeat: 6                      # 689 images -> ~517 iterations per epoch
+train:
+  epochs: 250

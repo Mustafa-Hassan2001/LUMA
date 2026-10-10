@@ -1,0 +1,5 @@
+# 2. Channel attention only (CBAM channel branch), gates kept.
+_base_: _short.yaml
+experiment: a02_channel_only
+model:
+  attention: {channel: cbam, spatial: false}

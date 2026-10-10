@@ -1,0 +1,5 @@
+# 2b. ECA instead of CBAM channel attention (+ spatial), gates kept.
+_base_: _short.yaml
+experiment: a02b_eca
+model:
+  attention: {channel: eca, spatial: true}
